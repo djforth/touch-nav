@@ -4,6 +4,7 @@
   "plugins": [
     "react"
   ],
+  "extends": "eslint:recommended",
   "env": {
     "browser": true,
     "es6": true,

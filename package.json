@@ -1,6 +1,6 @@
 {
   "name": "touch-nav",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "babel": {
@@ -128,6 +128,7 @@
     "morse-react-mixins": "git://github.com/djforth/morse-react-mixins.git",
     "react": "^0.14.3",
     "react-date-range": "^0.1.8",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "viewport-detection-es6": "git://github.com/djforth/viewport-detection-es6.git"
   }
 }

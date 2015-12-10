@@ -21,7 +21,7 @@ do{
   nav.active = (i===1)
   config.push(nav);
   i++;
-} while(i < 11)
+} while(i < 6)
 
 
 
