@@ -1,0 +1,44 @@
+form {
+  abbr[title] {
+    border-bottom: 0 none;
+  }
+
+  input {
+    @include reset-normalize-form-inputs;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+
+  input[type="email"], input[type="tel"], input[type="text"], textarea {
+    // layout
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    
+    // styling
+    border: 1px solid $input-border;
+    outline: none;
+  }
+
+  input[type="submit"] {
+    @extend .button;
+    @extend .button-primary;
+    border: 0 none;
+  }
+
+  label {
+    // layout
+    display: block;
+    margin-bottom: 5px;
+  
+    // styling
+    color: $label;
+    font-weight: bold;
+  }
+
+  .form-row {
+    margin-bottom: 10px;
+  }
+}

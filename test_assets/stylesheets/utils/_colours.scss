@@ -1,0 +1,171 @@
+// Use this tool to name colours:
+// http://chir.ag/projects/name-that-color
+
+// List the colours out below and then assign these colour variables to other variables to be used throughout the project, ie:
+
+// $gumbo: #7999a7;
+// $heading-text: $gumbo;
+
+// Blues
+$havelock-blue: #41a1db;
+$lochmara: #008bd0;
+
+// Greens
+$apple: #55a440;
+$celery: #9dcd53;
+$celery-2: #a6d263;
+$conifer: #98cf50;
+$fern: #65ad52;
+$mantis: #79b84f;
+$mantis-2: #86bf60;
+
+// Greys
+$alabaster: #f8f8f8;
+$alto: #dbdbdb;
+$alto-2: #cfcfcf;
+$alto-3: #dedede;
+$boulder: #797979;
+$dove-grey: #707070;
+$gallery: #eaeaea;
+$gallery-2: #f0f0f0;
+$mercury: #e7e7e7;
+$scorpion: #585858;
+$scorpion-t-02: rgba(88, 88, 88, 0.2);
+$scorpion-t-03: rgba(88, 88, 88, 0.3);
+$scorpion-t-04: rgba(88, 88, 88, 0.4);
+$silver: #ccc;
+$silver-t-05: rgba(204, 204, 204, 0.5);
+$tundora: #4a4a4a;
+
+// Other
+$trinidad: #e14e00;
+$white: #fff;
+
+/* ---------- Global ---------- */
+$body-link: $trinidad !default;
+$primary-body-text: $scorpion !default;
+$primary-heading-text: $apple !default;
+$primary-heading-text-em: $conifer !default;
+$secondary-heading-text: $scorpion !default;
+$tertiary-body-text: $white !default;
+$tertiary-heading-text: $white !default;
+
+// Forms
+$input-border: $silver !default;
+$label: $tundora !default;
+/* ---------- End Global ---------- */
+
+/* ---------- Components ---------- */
+// Buttons
+$button-primary-bg: $trinidad !default;
+$button-primary-bg-hover: darken($trinidad, 10%) !default;
+$button-primary-text: $white !default;
+$button-secondary-bg: $white !default;
+$button-secondary-bg-hover: darken($white, 10%) !default;
+$button-secondary-border: $trinidad !default;
+$button-secondary-text: $trinidad !default;
+$button-tertiary-bg: $alto !default;
+$button-tertiary-bg-hover: darken($alto, 10%) !default;
+$button-tertiary-text: $scorpion !default;
+
+$button-pagination-bg: $alto-3 !default;
+$button-pagination-bg-hover: darken($alto-3, 10%) !default;
+$button-pagination-text: $boulder !default;
+// Carousel
+$carousel-arrow-bg: $gallery !default;
+$carousel-dot-active-bg: $tundora !default;
+$carousel-dot-active-border: $gallery !default;
+$carousel-dot-bg: $white !default;
+$carousel-dot-border: $white !default;
+
+// Fake table
+$row-even: $gallery-2 !default;
+$table-em: $lochmara !default;
+$thead-text: $scorpion !default;
+$tr-border: $alto-2 !default;
+
+// Find us
+$map-overlay-bg-1: $apple !default;
+$map-overlay-bg-2: $celery !default;
+$map-overlay-border: $apple !default;
+$map-overlay-link: $white !default;
+$map-overlay-text: $white !default;
+
+// Header
+$header-bg: $dove-grey !default; /* $apple */
+$header-bg-nav-open: lighten($dove-grey, 10%) !default; /* $apple */
+$header-search-text: $white !default;
+
+// News items
+$news-item-image-heading-text: $white !default;
+$news-item-image-text-bg: $mercury !default;
+$news-item-image-text-heading-text: $apple !default;
+$news-item-text-bg: $apple !default;
+$news-item-text-body-text: $white !default;
+$news-item-text-heading-text: $white !default;
+
+// Pills
+$pill-primary-bg: $lochmara !default;
+$pill-secondary-bg: $celery !default;
+$pill-text: $white !default;
+
+// Primary navigation
+$primary-nav-bg: $dove-grey !default; /* $apple */
+$primary-nav-bg-hover: $white !default;
+$primary-nav-dropdown-bg: darken($dove-grey, 10%) !default; /* $apple */
+$primary-nav-dropdown-bg-hover: $dove-grey !default; /* $apple */
+$primary-nav-header-border: $white !default;
+$primary-nav-header-text: $white !default;
+$primary-nav-text: $white !default;
+$primary-nav-text-hover: $dove-grey !default; /* $apple */
+
+// Sections
+$section-border: $dove-grey !default;
+$section-dark-bg: $dove-grey !default;
+$section-dark-text: $white !default;
+$section-header-border: $celery !default;
+
+// Tabbed content
+$tabbed-content-body-bg: $alabaster !default;
+$tabbed-content-body-shadow: $scorpion-t-03 !default;
+$tabbed-content-nav-border: $alto-2 !default;
+$tabbed-content-nav-border-active: $apple !default;
+$tabbed-content-nav-text: $scorpion !default;
+$tabbed-content-nav-text-active: $apple !default;
+
+//Weekly programme
+$weekly-prog-nav-border: $alto-2 !default;
+$weekly-prog-nav-border-active: $apple !default;
+$weekly-prog-nav-text: $scorpion !default;
+$weekly-prog-nav-text-active: $apple !default;
+$weekly-prog-nav-today:$lochmara !default;
+$weely-prog-pill-arvo:$mantis !default;
+$weely-prog-pill-evening:$apple !default;
+$weely-prog-old-session:$silver !default;
+$weely-prog-now-session:$havelock-blue !default;
+$calendar-btn-text:$white !default;
+$calendar-btn-bg:$apple !default;
+$calendar-bar-border:$apple !default;
+$calendar-bar-bg: $alto-3 !default;
+$calendar-print-border: $alto-2 !default;
+/* ---------- End Components ---------- */
+
+/* ---------- Pages ---------- */
+// Venues show
+$venue-activities-article-bg: $white !default;
+$venue-contact-information-link: $scorpion !default;
+$venue-join-day-pass-bg: $mantis !default;
+$venue-join-day-pass-reflection: $mantis-2 !default;
+$venue-join-drop-in-bg: $celery !default;
+$venue-join-drop-in-reflection: $celery-2 !default;
+$venue-join-join-bg: $apple !default;
+$venue-join-join-reflection: $fern !default;
+$venue-join-button-bg: $scorpion-t-02 !default;
+$venue-join-button-bg-hover: $scorpion-t-04 !default;
+$venue-join-button-text: $white !default;
+$venue-opening-hours-border: $alto !default;
+$venue-opening-hours-time: $havelock-blue !default;
+
+// Home
+$top-activity-facility-bg: $white !default;
+/* ---------- End Pages ---------- */

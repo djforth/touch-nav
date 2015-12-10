@@ -1,0 +1,63 @@
+.button {
+  // layout
+  display: inline-block !important;
+  font-family: "Garage Gothic", Arial, Helvetica, sans-serif;
+  font-size: 1.5em; /* 24px */
+  font-weight: bold;
+
+  // styling
+  @include transition(background-color 0.2s ease-in-out);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.button-news {
+  // layout
+  padding: 15px 20px;
+
+  // styling
+  background-color: $button-secondary-bg;
+}
+
+.button-primary {
+  // layout
+  padding: 15px 30px;
+
+  // styling
+  background-color: $button-primary-bg;
+  color: $button-primary-text;
+
+  &:hover {
+    background-color: $button-primary-bg-hover;
+  }
+}
+
+.button-secondary {
+  // layout
+  padding: 10px 20px;
+
+  // styling
+  background-color: $button-secondary-bg;
+  border: 1px solid $button-secondary-border;
+
+  color: $button-secondary-text;
+
+  &:hover {
+    background-color: $button-secondary-bg-hover;
+  }
+}
+
+.button-pagination{
+  // layout
+  padding: 10px 30px;
+
+  // styling
+  background-color: $button-pagination-bg;
+  // border: 1px solid $button-pagination-border;
+
+  color: $button-pagination-text;
+
+  &:hover {
+    background-color: $button-pagination-bg-hover;
+  }
+}
