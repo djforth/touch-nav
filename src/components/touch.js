@@ -115,12 +115,12 @@ class Touch extends React.Component {
   }
 
   _touchCancel(e){
-    console.log("cancel", _.first(e.touches))
+    // console.log("cancel", _.first(e.touches))
   }
 
   _touchEnd(e){
     let dir =  this.directions.getDirection()
-    console.log("end", dir)
+    // console.log("end", dir)
     if(dir.moveX !== ""){
       this._mover(dir.moveX);
     }
@@ -128,12 +128,12 @@ class Touch extends React.Component {
 
   _touchMove(e){
     this.directions.addMove(e.touches)
-    console.log("move", _.first(e.touches))
+    // console.log("move", _.first(e.touches))
   }
 
   _touchStart(e){
     this.directions = touch(e.touches);
-    console.log("start", _.first(e.touches))
+    // console.log("start", _.first(e.touches))
   }
 
   render(){
