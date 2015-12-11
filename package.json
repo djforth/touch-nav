@@ -1,6 +1,6 @@
 {
   "name": "touch-nav",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "babel": {
@@ -13,9 +13,9 @@
     "assets_in": "test_assets",
     "assets_out": "app/assets",
     "name": "server",
-    "port": 9090,
+    "port": 4140,
     "rails_port": 3030,
-    "uiport": 8080
+    "uiport": 4141
   },
   "img_config": {
     "ext": [
@@ -127,7 +127,6 @@
     "normalize.css": "^3.0.3",
     "morse-react-mixins": "git://github.com/djforth/morse-react-mixins.git",
     "react": "^0.14.3",
-    "react-date-range": "^0.1.8",
     "react-dom": "^0.14.3",
     "viewport-detection-es6": "git://github.com/djforth/viewport-detection-es6.git"
   }

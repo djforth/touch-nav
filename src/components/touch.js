@@ -28,7 +28,7 @@ class Touch extends React.Component {
     this.right = ["nav-mover", "move-right", {hidden:false}]
 
     this.pos   = 0;
-    this.state = {listWidth:1000, listPos:0, id:id, navitems:NavStore.getNavItems(id), left:this.getClasses(this.left), right:this.getClasses(this.right), showBtn:true}
+    this.state = {listWidth:1000, listPos:0, id:id, navitems:NavStore.getNavItems(id), left:this.getClasses(this.left), right:this.getClasses(this.right), showBtn:true, holder_ref:`${id}holder`}
   }
 
   componentDidMount() {
@@ -70,7 +70,7 @@ class Touch extends React.Component {
   }
 
   _showButtons(width){
-    let holder = _.get(this.refs, 'holder').offsetWidth;
+    let holder = this._getHolderWidth();
     let show = (width > holder);
 
     if(show !== this.state.showBtn){
@@ -81,8 +81,12 @@ class Touch extends React.Component {
     }
   }
 
+  _getHolderWidth(){
+    return _.get(this.refs, this.state.holder_ref).offsetWidth;
+  }
+
   _getWidths(){
-    this.convertReactComps(_.omit(this.refs, "holder"));
+    this.convertReactComps(_.omit(this.refs, this.state.holder_ref));
     let width = Math.ceil(this.getWidths())
     this._showButtons(width)
     return width;
@@ -111,7 +115,7 @@ class Touch extends React.Component {
 
     let move  = _.pluck(_.take(elms, this.pos), "width");
     let mover = -this._getDistance(move);
-    let holder = _.get(this.refs, 'holder').offsetWidth;
+    let holder = this._getHolderWidth();;
     if(this.state.listWidth+mover < holder){
       mover = -(this.state.listWidth - holder);
     }
@@ -175,7 +179,7 @@ class Touch extends React.Component {
         <a href="#" className={this.state.left} onClick={this._buttonMove.bind(this, "left")}>
           <span className="hidden">left</span>
         </a>
-        <div className="list-holder" ref="holder">
+        <div className="list-holder" ref={this.state.holder_ref}>
           <ul className="nav-items" style={this._setStyle()} onLoad={this._getWidths.bind(this)}>
             {this._renderNav()}
           </ul>
