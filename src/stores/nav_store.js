@@ -22,7 +22,7 @@ const store = {
   },
 
   addNavItems(items, id){
-    id = (_.isNumber(id)) ? id : _.uniqueId("nav");
+    id = (id) ? id : _.uniqueId("nav");
     nav_items.push({items:this.setItems(items), id:id});
   },
 
@@ -35,8 +35,10 @@ const store = {
   },
 
   getNavItems(id){
-    if(_.isNumber(id)){
-      return _.find(nav_items, (ni)=>ni.id === id).items
+    console.log("nav_items", nav_items);
+    if(id){
+      let ni = _.find(nav_items, (ni)=>ni.id === id)
+      if(ni) return ni.items
     }
 
     return _.first(nav_items).items

@@ -23,10 +23,11 @@ class Touch extends React.Component {
     super(props);
     let id = _.uniqueId("nav");
     this.directions;
+    console.log(this.props.navitems, id);
     NavActions.addingItems(this.props.navitems, id);
     this.left  = ["nav-mover", "move-left", {hidden:false}];
     this.right = ["nav-mover", "move-right", {hidden:false}]
-
+    console.log(id, NavStore.getNavItems(id))
     this.pos   = 0;
     this.state = {listWidth:1000, listPos:0, id:id, navitems:NavStore.getNavItems(id), left:this.getClasses(this.left), right:this.getClasses(this.right), showBtn:true, holder_ref:`${id}holder`}
   }
