@@ -185,10 +185,23 @@ class Touch extends React.Component {
     // console.log("start", _.first(e.touches))
   }
 
+  _setCss(type){
+    switch(type){
+      case "main":
+        return (_.has(this.props, "main")) ? this.props.main : "touch-nav";
+      break
+      case "ul":
+        return (_.has(this.props, "ul")) ? this.props.main : "nav-items";
+      break;
+    }
+
+
+  }
+
   render(){
 
     return (
-      <nav className="touch-nav"
+      <nav className={this._setCss("main")}
         onTouchCancel={this._touchCancel.bind(this)}
         onTouchEnd={this._touchEnd.bind(this)}
         onTouchMove={this._touchMove.bind(this)}
@@ -198,7 +211,7 @@ class Touch extends React.Component {
           <span className="hidden">left</span>
         </a>
         <div className="list-holder" ref={this.state.holder_ref}>
-          <ul className="nav-items" style={this._setStyle()} onLoad={this._getWidths.bind(this)}>
+          <ul className={this._setCss("ul")} style={this._setStyle()} onLoad={this._getWidths.bind(this)}>
             {this._renderNav()}
           </ul>
         </div>
