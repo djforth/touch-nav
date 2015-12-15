@@ -188,10 +188,10 @@ class Touch extends React.Component {
   _setCss(type){
     switch(type){
       case "main":
-        return (_.has(this.props, "main")) ? this.props.main : "touch-nav";
+        return (_.has(this.props, "main_css")) ? this.props.main_css : "touch-nav";
       break
       case "ul":
-        return (_.has(this.props, "ul")) ? this.props.main : "nav-items";
+        return (_.has(this.props, "ul_css")) ? this.props.ul_css : "nav-items";
       break;
     }
 
