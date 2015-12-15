@@ -35,7 +35,6 @@ const store = {
   },
 
   getNavItems(id){
-    console.log("nav_items", nav_items);
     if(id){
       let ni = _.find(nav_items, (ni)=>ni.id === id)
       if(ni) return ni.items
