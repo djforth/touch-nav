@@ -52,11 +52,12 @@ class Touch extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log("new props", nextProps.navitems)
-    console.log(this.props.navitems !== nextProps.navitems)
+    // console.log("new props", nextProps.navitems)
+    // console.log(this.props.navitems !== nextProps.navitems)
     if(this.props.navitems !== nextProps.navitems){
       NavActions.updateItems(nextProps.navitems, this.state.id);
-      this.setState({navitems:NavStore.getNavItems(this.state.id)});
+      this.pos = 0;
+      this.setState({navitems:NavStore.getNavItems(this.state.id), listPos:0});
     }
   }
 
