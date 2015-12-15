@@ -41,6 +41,7 @@ class Touch extends React.Component {
     this.setState({listWidth:width});
     // console.log(this.detect.removeCallback(this.vp_id));
     NavStore.addChangeListener("change", this._onChange.bind(this));
+    // NavStore.addChangeListener("adding", this._onAdd.bind(this));
   }
 
   componentDidUpdate(){
@@ -50,15 +51,26 @@ class Touch extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps){
+    if(this.props.navitems !== nextProps.navitems){
+      NavActions.addingItems(nextProps.navitems, this.state.id);
+      this.setState({navitems:NavStore.getNavItems(this.state.id)});
+    }
+  }
+
   componentWillUnmount() {
     this.detect.removeCallback(this.vp_id);
     NavStore.removeChangeListener("change", this._onChange);
+    // NavStore.removeChangeListener("add", this._onAdd);
   }
 
   _onViewChange(){
-    console.log("Viewport change")
     this._showButtons(this.state.listWidth)
   }
+
+  // _onAdd(){
+  //   this.setState({navitems:NavStore.getNavItems(this.state.id)});
+  // }
 
   _onChange(){
     let id = this.state.id;
