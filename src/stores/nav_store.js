@@ -23,6 +23,7 @@ const store = {
 
   addNavItems(items, id){
     id = (id) ? id : _.uniqueId("nav");
+
     nav_items.push({items:this.setItems(items), id:id});
   },
 
@@ -75,6 +76,11 @@ const registeredCallback = function(payload) {
     case "CHANGE_ACTIVE":
       NavStore.changeActive(action.id, action.nav_id);
       NavStore.emitChange("change");
+      break;
+
+    case "UPDATE_NAV":
+      NavStore.setNavItems(action.id, action.nav);
+      NavStore.emitChange("update");
       break;
     }
 };

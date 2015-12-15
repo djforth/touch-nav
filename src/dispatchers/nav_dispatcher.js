@@ -13,15 +13,23 @@ const NavDispatcher = assign(new Dispatcher(), {
       action: action
     };
     this.dispatch(payload);
-  },
+  }
 
-  changeActive: function(action) {
+  , changeActive: function(action) {
     var payload = {
       source: "CHANGE_ACTIVE",
       action: action
     };
     this.dispatch(payload);
   }
+
+  , updateNavItems: function(action) {
+    var payload = {
+      source: "UPDATE_NAV",
+      action: action
+    };
+    this.dispatch(payload);
+  },
 });
 
 

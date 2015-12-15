@@ -5,26 +5,47 @@ const ReactDom = require('react-dom')
 
 const Touch = require("../../src/components/touch")
 
-var i = 1;
-let config = []
-let config2 = []
+
+
 var test = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem quae sint iste, eius molestias. Laboriosam architecto eaque, similique, ut tempora, commodi id veniam delectus temporibus blanditiis quas inventore. Nisi, commodi."
 
-do{
-  let name = test.substring(0, i*5)
-  let nav ={name:name, title:`Click here to go to Nav item ${i}`}
-  if(i%2 === 0){
-    nav.data = {id:i, additonal:`foo${i}`}
-  } else {
-    nav.href = "#"
-  }
 
-  nav.active = (i===1)
-  config.push(nav);
-  config2.push({name:`NavItem ${i}`, title:`Click here to go to Nav item ${i}`, href:"http://better.org.uk"})
-  i++;
-} while(i < 6)
+function createConfigs(){
+  let config = []
+  let config2 = []
+  var i = 1;
+  do{
+    let num = _.random(0,i)
+    let name = test.substring(num, num+10)
+    let nav ={name:name, title:`Click here to go to Nav item ${i}`}
+    if(i%2 === 0){
+      nav.data = {id:i, additonal:`foo${i}`}
+    } else {
+      nav.href = "#"
+    }
 
+    nav.active = (i===1)
+    config.push(nav);
+    config2.push({name:`NavItem ${_.random(1, 100)}`, title:`Click here to go to Nav item ${_.random()}`, href:"http://better.org.uk"})
+    i++;
+  } while(i < _.random(6,12));
+  // console.log(config, config2)
+  return {one:config, two:config2};
+}
+
+function addNavs(){
+  let config = createConfigs();
+  console.log("add", config)
+  ReactDom.render(
+    <Touch navitems={config.one} callback={callback} />,
+    document.getElementById('nav')
+  );
+
+  ReactDom.render(
+    <Touch navitems={config.two} callback={callback} />,
+    document.getElementById('nav2')
+  );
+}
 
 
 function callback(name, data){
@@ -32,12 +53,13 @@ function callback(name, data){
   console.log(data);
 }
 
-ReactDom.render(
-  <Touch navitems={config} callback={callback} />,
-  document.getElementById('nav')
-);
+addNavs();
 
-ReactDom.render(
-  <Touch navitems={config2} callback={callback} />,
-  document.getElementById('nav2')
-);
+let link = document.getElementById("update");
+
+link.addEventListener("click", (e)=>{
+  e.preventDefault();
+  console.log("click")
+
+  addNavs();
+})
