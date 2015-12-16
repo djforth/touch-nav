@@ -68,7 +68,8 @@ class Touch extends React.Component {
   }
 
   _onViewChange(){
-    this._showButtons(this.state.listWidth)
+    this._showButtons(this.state.listWidth);
+    this.setState({listPos:0});
   }
 
   // _onAdd(){

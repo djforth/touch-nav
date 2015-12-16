@@ -3,7 +3,7 @@ const React = require("react")
 
 //Mixins
 let mixins = require("morse-react-mixins");
-const [cssMixins, textMixins]  = [mixins.css_mixins, mixins.text_mixins];
+const [cssMixins, textMixins, checker]  = [mixins.css_mixins, mixins.text_mixins, mixins.checker];
 
 
 //Flux
@@ -30,13 +30,17 @@ class TouchNavItem extends React.Component {
 
   _clicked(e){
     e.preventDefault();
+
     let item = this.props.nav_item;
     let cb = this.props.callback;
     let data = _.omit(item, 'title');
-    NavActions.changeActive(this.props.nav_item.id, this.props.nav_id)
-    if(_.isFunction(cb)){
-      cb.apply(this, _.values(data));
+    if(checker.isMounted(this)){
+      NavActions.changeActive(this.props.nav_item.id, this.props.nav_id)
+      if(_.isFunction(cb)){
+        cb.apply(this, _.values(data));
+      }
     }
+
   }
 
   _internal(navitem){
@@ -78,6 +82,7 @@ class TouchNavItem extends React.Component {
 
 Object.assign(TouchNavItem.prototype, cssMixins);
 Object.assign(TouchNavItem.prototype, textMixins);
+// Object.assign(TouchNavItem.prototype, checker);
 
 
 module.exports = TouchNavItem;
