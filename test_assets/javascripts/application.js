@@ -42,7 +42,7 @@ function addNavs(){
   );
 
   ReactDom.render(
-    <Touch navitems={config.two} callback={callback} />,
+    <Touch navitems={[_.first(config.two)]} callback={callback} />,
     document.getElementById('nav2')
   );
 }

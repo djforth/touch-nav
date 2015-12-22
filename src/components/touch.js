@@ -106,6 +106,7 @@ class Touch extends React.Component {
   }
 
   _getWidths(){
+    // return 0;
     this.convertReactComps(_.omit(this.refs, this.state.holder_ref));
     let width = Math.ceil(this.getWidths())
     this._showButtons(width)
@@ -162,7 +163,7 @@ class Touch extends React.Component {
       navitems = "";
     }
 
-    return navitems
+    return (_.isEmpty(navitems)) ? "" : navitems
   }
 
   _touchCancel(e){
