@@ -148,7 +148,7 @@ class Touch extends React.Component {
     let navitems
     if(_.isArray(this.state.navitems)){
       navitems = _.map(this.state.navitems, (ni, i)=>{
-        let key = this.createId(ni.name, i);
+        let key = this.createId(ni.name, i, "touchnav");
 
         return (
           <NavItem
