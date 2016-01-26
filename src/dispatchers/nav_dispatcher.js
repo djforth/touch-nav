@@ -29,7 +29,7 @@ const NavDispatcher = assign(new Dispatcher(), {
       action: action
     };
     this.dispatch(payload);
-  },
+  }
 });
 
 

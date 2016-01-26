@@ -109,7 +109,7 @@
     "postcss-merge-longhand": "^2.0.1",
     "postcss-merge-rules": "^2.0.1",
     "react-addons-test-utils": "^0.14.3",
-    "react-jasmine": "git://github.com/djforth/react-jasmine.git#v0.1.0",
+    "react-jasmine": "0.1.6",
     "react-tools": "^0.13.3",
     "readdirp": "^2.0.0",
     "require-dir": "^0.3.0",
@@ -125,9 +125,9 @@
     "immutable": "^3.7.5",
     "lodash": "^3.10.1",
     "normalize.css": "^3.0.3",
-    "morse-react-mixins": "git://github.com/djforth/morse-react-mixins.git",
+    "morse-react-mixins": "0.1.11",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "viewport-detection-es6": "git://github.com/djforth/viewport-detection-es6.git"
+    "viewport-detection-es6": "0.0.9"
   }
 }
