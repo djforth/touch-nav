@@ -21,7 +21,7 @@ const NavItem = require("./touch-nav-item");
 class Touch extends React.Component {
   constructor(props) {
     super(props);
-    let id = _.uniqueId("nav");
+    let id = _.uniqueId(props.title || "nav");
     this.directions;
     NavActions.addingItems(this.props.navitems, id);
     this.left  = ["nav-mover", "move-left", {hidden:false}];
@@ -108,10 +108,14 @@ class Touch extends React.Component {
   _getWidths(){
     // return 0;
     // this.convertReactComps(_.omit(this.refs, this.state.holder_ref));
-    this.convertDomlist(this.refs.navlist.querySelectorAll("li"));
-    let width = Math.ceil(this.getWidths())
-    this._showButtons(width)
-    return width;
+    if(this.refs.navlist){
+      this.convertDomlist(this.refs.navlist.querySelectorAll("li"));
+      let width = Math.ceil(this.getWidths())
+      this._showButtons(width)
+      return width;
+    }
+
+    return this.state.listWidth
   }
 
   _setStyle(){
