@@ -107,7 +107,8 @@ class Touch extends React.Component {
 
   _getWidths(){
     // return 0;
-    this.convertReactComps(_.omit(this.refs, this.state.holder_ref));
+    // this.convertReactComps(_.omit(this.refs, this.state.holder_ref));
+    this.convertDomlist(this.refs.navlist.querySelectorAll("li"));
     let width = Math.ceil(this.getWidths())
     this._showButtons(width)
     return width;
@@ -152,7 +153,6 @@ class Touch extends React.Component {
 
         return (
           <NavItem
-            ref      = {key}
             key      = {key}
             nav_id   = {this.state.id}
             callback = {this.props.callback}
@@ -217,7 +217,7 @@ class Touch extends React.Component {
           <span className="hidden">left</span>
         </a>
         <div className="list-holder" ref={this.state.holder_ref}>
-          <ul className={this._setCss("ul")} style={this._setStyle()} onLoad={this._getWidths.bind(this)}>
+          <ul className={this._setCss("ul")} style={this._setStyle()} onLoad={this._getWidths.bind(this)} ref="navlist">
             {this._renderNav()}
           </ul>
         </div>
