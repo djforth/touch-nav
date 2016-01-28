@@ -125,7 +125,7 @@
     "immutable": "^3.7.5",
     "lodash": "^3.10.1",
     "normalize.css": "^3.0.3",
-    "morse-react-mixins": "0.1.15",
+    "morse-react-mixins": "0.1.16",
     "react": "0.14.3",
     "react-dom": "0.14.3",
     "viewport-detection-es6": "0.0.10"
