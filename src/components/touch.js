@@ -21,7 +21,8 @@ const NavItem = require("./touch-nav-item");
 class Touch extends React.Component {
   constructor(props) {
     super(props);
-    let id = _.uniqueId(props.title || "nav");
+
+    let id = _.uniqueId("nav");
     this.directions;
     NavActions.addingItems(this.props.navitems, id);
     this.left  = ["nav-mover", "move-left", {hidden:false}];
