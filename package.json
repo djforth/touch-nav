@@ -1,6 +1,6 @@
 {
   "name": "touch-nav",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "",
   "main": "index.js",
   "babel": {
@@ -32,7 +32,8 @@
           "babelify",
           {
             "presets": [
-              "es2015", "react"
+              "es2015",
+              "react"
             ]
           }
         ]
