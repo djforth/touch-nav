@@ -1,7 +1,9 @@
 //Libraries
 const React = require("react");
-const _     = require("lodash");
-
+const _     = require("lodash/core");
+_.mapValues = require("lodash/mapValues");
+_.get       = require("lodash/get");
+_.take      = require("lodash/take");
 // Morse Libraies
 const ViewportDetect = require("viewport-detection-es6");
 
@@ -140,7 +142,7 @@ class Touch extends React.Component {
       this.pos++;
     }
 
-    let move  = _.pluck(_.take(elms, this.pos), "width");
+    let move  = _.map(_.take(elms, this.pos), "width");
     let mover = -this._getDistance(move);
     let holder = this._getHolderWidth();
     if(this.state.listWidth+mover < holder){

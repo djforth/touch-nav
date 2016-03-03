@@ -26,10 +26,11 @@ function createConfigs(){
 
     nav.active = (i===1)
     config.push(nav);
-    config2.push({name:`NavItem ${_.random(1, 100)}`, title:`Click here to go to Nav item ${_.random()}`, href:"http://better.org.uk"})
+    let n = _.random(1, 100)
+    config2.push({name:`NavItem ${n}`, title:`Click here to go to Nav item ${n}`, href:"http://better.org.uk"})
     i++;
   } while(i < _.random(6,12));
-  // console.log(config, config2)
+  console.log(config, config2)
   return {one:config, two:config2};
 }
 
@@ -42,7 +43,7 @@ function addNavs(){
   );
 
   ReactDom.render(
-    <Touch navitems={[_.first(config.two)]} callback={callback} />,
+    <Touch navitems={config.two} callback={callback} />,
     document.getElementById('nav2')
   );
 }

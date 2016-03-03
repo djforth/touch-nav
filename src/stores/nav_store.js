@@ -1,7 +1,7 @@
 const EventEmitter  = require("events").EventEmitter
     , assign        = require("react/lib/Object.assign");
 
-const _ = require("lodash");
+const _ = require("lodash/core");
 
 const NavDispatcher = require("../dispatchers/nav_dispatcher");
 

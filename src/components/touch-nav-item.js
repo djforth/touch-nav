@@ -1,6 +1,7 @@
 const React = require("react")
-    , _     = require("lodash");
+    , _     = require("lodash/core");
 
+_.omit = require("lodash/omit");
 //Mixins
 let mixins = require("morse-react-mixins");
 const [cssMixins, textMixins, checker]  = [mixins.css_mixins, mixins.text_mixins, mixins.checker];
