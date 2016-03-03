@@ -170,6 +170,6 @@
     "morse-react-mixins": "1.0.2",
     "react": "0.14.3",
     "react-dom": "0.14.3",
-    "viewport-detection-es6": "2.0.3"
+    "viewport-detection-es6": "2.0.4"
   }
 }
