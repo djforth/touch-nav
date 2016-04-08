@@ -7,13 +7,11 @@ var assets_in   = pckage.config.assets_in || path.join("test_assets");
 var assets_out  = pckage.config.assets_out || path.join("app", "assets");
 assets_out = path.join(assets_out)
 
-var critical = pckage.critical_config
-
-var img_ext  = pckage.img_config.ext || ['*.png', '*.gif', '*.jpg', '*.jpeg', '*.svg']
-
 var config  = pckage.config;
 
 var js = pckage.js_config;
+
+var img_ext  = ['*.png', '*.gif', '*.jpg', '*.jpeg', '*.svg']
 
 var rails_server = (config.rails_port) ? "http://localhost:"+config.rails_port : "http://localhost:3030"
 
@@ -37,13 +35,7 @@ module.exports = {
   , output : assets_out
   , temp   : path.join("tmp", "images")
   }
-  // Javascript config
-  , javascript : {
-      ext    : js.ext || ['.js', ".es6.js"]
-    , files  : js.files || ["components.es6.js"]
-    , input  : path.join(assets_in, "javascripts")
-    , output : js.output || path.join("app", "assets", "javascripts")
-  }
+
   // SCSS config
   , stylesheets : {
     ext    : ['*.css', '*.css.map', "*.gz"]

@@ -4,10 +4,7 @@ var _        = require("lodash")
   , folder    = require('../utils/folder_helpers')
   , sassBuild = require('../css_helpers/sass_multi');
 
-var img_conf = configuration.images
-  , config   = configuration.stylesheets
-  // , name     = configuration.browserSync.server
-  , img_ext  = img_conf.ext
+var  config   = configuration.stylesheets
   , css_ext  = config.ext
 
 

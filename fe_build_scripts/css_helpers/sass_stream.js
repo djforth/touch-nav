@@ -19,11 +19,10 @@ var processCSS = function(file){
   }
 }
 
-var processSCSS = function(file, output, type){
-
+var processSCSS = function(file, output, type, comments){
   return {
       fullPath:file.fullPath
-    , comments:true
+    , comments:(_.isBoolean(comments)) ? comments : true
     , name:file.name.replace(".scss", ".css")
     , output:output+"/"+file.name.replace(".scss", ".css")
     , scss:true
@@ -47,7 +46,6 @@ var copyCSS = function(file, output, cb){
 
 
 var processStylesheets = function(file, output, data, cb){
-
   if(file.scss){
     sassBuild(file, data, cb)
   } else {
@@ -59,16 +57,16 @@ var processStylesheets = function(file, output, data, cb){
 
 
 module.exports = function(input, output){
-  var cb, stream, data, compression;
+  var cb, stream, data, compression, comments;
   cb   = {};
   data = {};
-
+  console.log(input, output);
   return {
     addCallBack:function(func, type){
       if(_.isFunction(func)){
         cb[type] = func
       }
-      // console.log("callback >>><>>>>>", this)
+
       return this;
     }
 
@@ -90,8 +88,14 @@ module.exports = function(input, output){
       return this;
     }
 
+    , addComments:function(c){
+      comments = c;
+      return this;
+    }
+
     , stream:function(){
       var scss_list = folder.getFiles(input)
+
       scss_list
       .on("end", function(){
         var callback = _.get(cb, "end")
@@ -101,18 +105,19 @@ module.exports = function(input, output){
       })
       //Process Files ready to process
       .pipe(es.mapSync(function(file){
-        return (checker(file)) ? processCSS(file) : processSCSS(file, output, compression);
+        return (checker(file)) ? processCSS(file) : processSCSS(file, output, compression, comments);
 
       })
       )
       .pipe(es.through(function(file){
         var callback = _.get(cb, "process")
         var binder = _.bind(processStylesheets, {}, file, output, data);
-
+        console.log(file)
         this.emit('data', file)
         if(file){
           this.pause();
           binder(function(){
+
               this.resume();
               if(callback) callback(file);
             }.bind(this)
@@ -123,7 +128,6 @@ module.exports = function(input, output){
         })
       )
       .pipe(es.mapSync(function(file){
-          // console.log("stream")
           if(stream){
             return stream(file)
           }

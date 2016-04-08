@@ -2,6 +2,7 @@
 // Generated on Thu Nov 19 2015 09:49:23 GMT+0000 (GMT)
 
 var babelify    = require("babelify");
+// var babelMoreOptions = { presets: 'es2015' };
 
 module.exports = function(config) {
   config.set({
@@ -18,8 +19,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       '../node_modules/babel-polyfill/browser.js',
-      '../node_modules/react-tools/src/test/phantomjs-shims.js',
-      '../spec/**/*_spec.js'
+      '../spec/utils/*_spec.js'
     ],
 
 
@@ -31,7 +31,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-       '../spec/**/*_spec.js': ['browserify']
+       '../spec/utils/*_spec.js': ['browserify']
     },
 
     browserify: {
@@ -43,6 +43,7 @@ module.exports = function(config) {
         bundle.transform(babelify, {presets: ["es2015", "react"]})
       }
     },
+
 
 
     // test results reporter to use

@@ -1,7 +1,7 @@
 const Dispatcher = require("flux").Dispatcher;
-const assign     = require("react/lib/Object.assign");
 
-const NavDispatcher = assign(new Dispatcher(), {
+
+const NavDispatcher = Object.assign(new Dispatcher(), {
 
   /**
    * @param {object} action The details of the action, including the action"s

@@ -1,15 +1,22 @@
-var _        = require("lodash")
- , b_helper  = require("../javascript_helpers/browserify_builder")
- , bs        = require("./bs_helper")
- , config    = require("../config").javascript
- , es        = require("event-stream")
- , folder    = require("../utils/folder_helpers")
- , fs        = require("fs");
+var _     = require("lodash")
+ , Bundle = require("@djforth/ap_browserify").bundle
+ , config = require("@djforth/ap_browserify").config
 
-module.exports = function(){
-  // b_helper(config.files, true, true, bs());
-  reader = es.readArray(config.files)
-   .pipe(es.mapSync(function(js){
-      b_helper(js, true, true, bs());
-    }));
+function bundle(file, bs){
+  console.log(file)
+  Bundle(false, file, bs())
+    .setOutput(file)
+    .setFactor(config.get("factor"))
+    .build(true)
+}
+
+module.exports = function(bs){
+  console.log("separate", config.get("separate"))
+  if(config.get("separate")){
+    config.get("files").forEach(function(file){
+      bundle(file, bs)
+    })
+  } else {
+    bundle(undefined, bs)
+  }
 }

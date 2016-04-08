@@ -30,10 +30,8 @@ function sassFiles(bs){
   return {
     add:function(file){
       sass_list.push(file);
-      // console.log("add", file);
     }
     , process:function(scss){
-        // console.log("eh")
         var details = find(scss);
         if(details)
           processSass(details, function(){
@@ -42,11 +40,11 @@ function sassFiles(bs){
           });
       }
     , processAll:function(){
-      // console.log("eh * 2")
+
       es.readArray(sass_list)
         .on("end", function(){
           if(sync)
-            sync(_.pluck(sass_list, "output"));
+            sync(_.map(sass_list, "output"));
         })
        .pipe(es.through(function(scss){
           this.pause();
@@ -64,9 +62,9 @@ function sassFiles(bs){
 }
 
 
-module.exports = function sass(server, watch, cb){
-
+module.exports = function sass(server, watch, cb, firstrun){
   var sassHolder = sassFiles(server);
+
 
   if(watch){
     var watcher = watchFolder(config.input
@@ -80,24 +78,31 @@ module.exports = function sass(server, watch, cb){
     );
   }
 
-  var streamer =  sassStream(config.input, config.output);
-  streamer
-    .addCallBack(cb, "end")
-    .addCallBack(function(file){
-      console.log("In progress")
-      if(server){
-        server(file.output);
-      }
-    }, "progress")
-    .addType("nested")
-    .addStream(function(file){
-        if(file && watcher){
-          if(file.scss){
-            sassHolder.add(file)
-          }
-          watcher.add(file.fullPath)
+  if(firstrun){
+
+    var streamer =  sassStream(config.input, config.output);
+
+    streamer
+      .addCallBack(cb, "end")
+      .addCallBack(function(file){
+        console.log(file.output);
+        if(_.isFunction(server) && file.output){
+          server(file.output);
         }
-        return file;
-      })
-    .stream();
+      }, "progress")
+      .addType("nested")
+      .addComments(true)
+      .addStream(function(file){
+          if(file && watcher){
+            if(file.scss){
+              sassHolder.add(file)
+            }
+            watcher.add(file.fullPath)
+          }
+
+          return file;
+        })
+      .stream();
+  }
+
 }

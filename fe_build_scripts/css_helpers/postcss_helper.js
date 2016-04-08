@@ -1,4 +1,5 @@
 var atImport     = require("postcss-import")
+  , _            = require("lodash")
   , autoprefixer = require('autoprefixer')
   , create       = require('../utils/folder_helpers')
   , cssMQPacker  = require("css-mqpacker")
@@ -10,26 +11,27 @@ var atImport     = require("postcss-import")
 
 var plugins = [
     autoprefixer
-  , cssMQPacker
-  , duplicates
-  , longhand
-  , mergeRules
 ];
 
 module.exports = function(css, fileName, mapName, cb){
-    console.log("post >>>>> ", fileName)
+    console.log("postcss", fileName)
     postcss(plugins)
       .use(atImport)
-      .process(css)
+      .process(css, {from: fileName,
+        to:fileName, annotation:true, map: { inline: false }})
       .then(function (post) {
-        // console.log("PostCSS'ed", fileName)
+        console.log(fileName)
         post.warnings().forEach(function (warn) {
             console.warn(warn.toString());
         });
-        console.log("PostCSS'ed", fileName)
+
         create.file(fileName, post.css.toString()+"\r\r /*# sourceMappingURL="+mapName+" */");
 
-        cb();
+        if(post.map) create.file(fileName+".map", post.map);
+
+
+        if(_.isFunction(cb)) cb(fileName);
+
     });
 
   }

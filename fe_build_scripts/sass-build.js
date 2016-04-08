@@ -16,14 +16,18 @@ program
   .option('-w, --watch', 'Watch scripts')
   .parse(process.argv);
 
-folder.clearFolder(
-      config.output
-    , config.ext
-    , function(){
-      console.log("cleared " + config.output);
-      sass();
-    });
+// folder.folder(configuration.assets_main);
+
+// folder.clearFolder(
+//       config.output
+//     , config.ext
+//     , function(){
+//       console.log("cleared " + config.output);
+//       sass();
+//     });
 
 function sass(){
-  sassBuild(null, program.watch);
+  sassBuild(null, program.watch, null, true);
 }
+
+sass();

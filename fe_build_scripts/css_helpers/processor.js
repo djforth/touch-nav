@@ -8,15 +8,15 @@ var fs = require('fs')
 var mime = require('mime')
   , sizeOf = require('image-size');
 
+// var store_images = require("../utils/cache_images");
+
 var Processor = {
 
   asset_url:function(filepath, segment, done) {
-    // console.log('filepath', filepath);
+
     var http_path, sanitized_http_path, real_path;
     http_path = sanitized_http_path = this.http_path(filepath, segment);
     real_path = this.real_path(filepath, segment);
-
-
 
     var fragmentIndex = sanitized_http_path.indexOf('#'), fragment = '';
     if (~fragmentIndex) {
@@ -32,16 +32,16 @@ var Processor = {
       restoreFragment(http_path);
     }.bind(this);
 
-    console.log(sanitized_http_path)
+
     next(sanitized_http_path);
 
   }
 
   , cache_bust:function(fileName){
-    // console.log(fileName, this.paths.filePaths);
+
     if(this.paths.filePaths){
       var obj = _.find(this.paths.filePaths, {original:fileName});
-      // console.log(obj)
+
       if(_.isUndefined(obj)){
         return fileName;
       }
@@ -100,15 +100,22 @@ var Processor = {
     var fp = this.cache_bust(filepath);
     var src = this.real_path(fp, 'images');
 
-    mime_type = mime_type || mime.lookup(src);
-    fs.readFile(src, function(err, data){
-      if(err) {
-        console.error(err)
-        done("")
-      } else {
-        done('data:'+mime_type+'base64,'+data.toString('base64'));
-      }
-    });
+    // var stored64 = store_images.checkJson(fp);
+
+    // if(stored64){
+    //   done(stored64)
+    // } else {
+      mime_type = mime_type || mime.lookup(src);
+      fs.readFile(src, function(err, data){
+        if(err) {
+          console.error(err)
+          done("")
+        } else {
+          // store_images.addJson('data:'+mime_type+';base64,'+data.toString('base64'), fp)
+          done('data:'+mime_type+';base64,'+data.toString('base64'));
+        }
+      });
+    // }
   }
 
   , real_path:function(filepath, segment) {

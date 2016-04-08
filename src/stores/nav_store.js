@@ -1,5 +1,4 @@
-const EventEmitter  = require("events").EventEmitter
-    , assign        = require("react/lib/Object.assign");
+const EventEmitter  = require("events").EventEmitter;
 
 const _ = require("lodash/core");
 
@@ -63,7 +62,7 @@ const store = {
 }
 
 
-const NavStore = assign({}, EventEmitter.prototype, store);
+const NavStore = Object.assign({}, EventEmitter.prototype, store);
 
 const registeredCallback = function(payload) {
   let action = payload.action;
