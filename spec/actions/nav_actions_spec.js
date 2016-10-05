@@ -1,7 +1,7 @@
 const NavActions = require("../../src/actions/nav_actions");
 
 
-const actionHelper = require("react-jasmine").checkActions;
+const actionHelper = require("@djforth/react-jasmine-wp").checkActions;
 
 describe("NavActions", function() {
 

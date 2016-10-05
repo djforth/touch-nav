@@ -113,21 +113,3 @@ Object.assign(TouchNavItem.prototype, textMixins);
 
 
 module.exports = TouchNavItem;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(cssMixins, "cssMixins", "src/components/touch-nav-item.js");
-
-  __REACT_HOT_LOADER__.register(textMixins, "textMixins", "src/components/touch-nav-item.js");
-
-  __REACT_HOT_LOADER__.register(checker, "checker", "src/components/touch-nav-item.js");
-
-  __REACT_HOT_LOADER__.register(TouchNavItem, "TouchNavItem", "src/components/touch-nav-item.js");
-}();
-
-;
-//# sourceMappingURL=touch-nav-item.js.map

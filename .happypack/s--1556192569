@@ -299,21 +299,3 @@ Object.assign(Touch.prototype, textMixins);
 Object.assign(Touch.prototype, widthsMixins);
 
 module.exports = Touch;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(cssMixins, "cssMixins", "src/components/touch.js");
-
-  __REACT_HOT_LOADER__.register(textMixins, "textMixins", "src/components/touch.js");
-
-  __REACT_HOT_LOADER__.register(widthsMixins, "widthsMixins", "src/components/touch.js");
-
-  __REACT_HOT_LOADER__.register(Touch, "Touch", "src/components/touch.js");
-}();
-
-;
-//# sourceMappingURL=touch.js.map

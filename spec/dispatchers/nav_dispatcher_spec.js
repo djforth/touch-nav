@@ -1,6 +1,6 @@
 const NavDispatcher = require("../../src/dispatchers/nav_dispatcher");
 
-const dispatcherHelper = require("react-jasmine").checkDispatcher;
+const dispatcherHelper = require("@djforth/react-jasmine-wp").checkDispatcher;
 
 
 describe("NavDispatcher", function() {

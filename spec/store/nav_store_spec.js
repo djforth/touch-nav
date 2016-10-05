@@ -1,9 +1,9 @@
 const NavStore = require('../../src/stores/nav_store');
 
-const storeHelper    = require("react-jasmine").storeHelpers;
-const defaultsHelper = require("react-jasmine").checkDefaults;
+const storeHelper    = require("@djforth/react-jasmine-wp").storeHelpers;
+const defaultsHelper = require("@djforth/react-jasmine-wp").checkDefaults;
 
-const _         = require('lodash');
+const _ = require('lodash');
 // const Immutable = require('immutable');
 
 
