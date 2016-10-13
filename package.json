@@ -1,6 +1,6 @@
 {
   "name": "@djforth/touch-nav",
-  "version": "2.0.0",
+  "version": "4.0.0",
   "description": "Touch interface nav for Better sites",
   "main": "index.js",
   "babel": {

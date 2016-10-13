@@ -124,7 +124,7 @@ class Touch extends React.Component {
   _setStyle(){
     let styles = {"width":this.state.listWidth, left:this.state.listPos}
     return _.mapValues(styles, (v)=> {
-      return v.toString();
+      return `${v.toString()}px`;
     });
   }
 
@@ -212,7 +212,6 @@ class Touch extends React.Component {
   }
 
   render(){
-
     return (
       <nav className={this._setCss("main")}
         onTouchCancel={this._touchCancel.bind(this)}
