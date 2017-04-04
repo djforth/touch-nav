@@ -1,32 +1,35 @@
-const React = require("react")
-    , _     = require("lodash/core");
+ import React from 'react';
+ import _ from 'lodash/core';
 
-_.omit = require("lodash/omit");
-//Mixins
-let mixins = require("morse-react-mixins");
-const [cssMixins, textMixins, checker]  = [mixins.css_mixins, mixins.text_mixins, mixins.checker];
+ import omit from 'lodash/omit';
+ _.omit = omit;
+// Mixins
+import {
+  checker
+  , css_mixins as cssMixins
+  , text_mixins as textMixins
+} from 'morse-react-mixins';
 
+// Flux
+import NavActions from '../actions/nav_actions';
+import NavStore from '../stores/nav_store';
 
-//Flux
-const NavActions = require("../actions/nav_actions")
-    , NavStore   = require("../stores/nav_store");
-
-
-class TouchNavItem extends React.Component {
-   constructor(props) {
+class TouchNavItem extends React.Component{
+   constructor(props){
     super(props);
     // console.log('props', this.props.nav_item);
-    this.listCss = ["date-nav-item", {"active":this.props.nav_item.active}]
-    this.state = {list:this.getClasses(this.listCss)};
+    this.listCss = ['date-nav-item', {'active': this.props.nav_item.active}];
+    this.state = {list: this.getClasses(this.listCss)};
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    return (nextProps.nav_item.active !== this.props.nav_item.active) || nextState.list !== this.state.list
+    return (nextProps.nav_item.active !== this.props.nav_item.active) ||
+      nextState.list !== this.state.list;
   }
 
   componentWillReceiveProps(nextProps){
-    this.listCss = ["date-nav-item", {"active":nextProps.nav_item.active}];
-    this.setState({list:this.getClasses(this.listCss)});
+    this.listCss = ['date-nav-item', {'active': nextProps.nav_item.active}];
+    this.setState({list: this.getClasses(this.listCss)});
   }
 
   _clicked(e){
@@ -35,25 +38,23 @@ class TouchNavItem extends React.Component {
     let item = this.props.nav_item;
     let cb = this.props.callback;
     let data = _.omit(item, 'title');
-    if(checker.isMounted(this)){
-      NavActions.changeActive(this.props.nav_item.id, this.props.nav_id)
-      if(_.isFunction(cb)){
+    if (checker.isMounted(this)){
+      NavActions.changeActive(this.props.nav_item.id, this.props.nav_id);
+      if (_.isFunction(cb)){
         cb.apply(this, _.values(data));
       }
     }
-
   }
 
   _internal(navitem){
-    return(
+    return (
       <a href="#"
          title={navitem.title}
          onClick={this._clicked.bind(this)}
          className="date-nav-item-link">
           {navitem.name}
       </a>
-    )
-
+    );
   }
 
    _external(navitem){
@@ -63,16 +64,16 @@ class TouchNavItem extends React.Component {
          className="date-nav-item-link">
          {navitem.name}
       </a>
-    )
+    );
   }
 
   _renderLink(navitem){
-    return (_.has(navitem, "href")) ? this._external(navitem) : this._internal(navitem);
+    return (_.has(navitem, 'href')) ? this._external(navitem) : this._internal(navitem);
   }
 
 
   render(){
-    let navitem = this.props.nav_item
+    let navitem = this.props.nav_item;
     return (
       <li role="presentation" className={this.state.list}>
         {this._renderLink(navitem)}
@@ -86,4 +87,4 @@ Object.assign(TouchNavItem.prototype, textMixins);
 // Object.assign(TouchNavItem.prototype, checker);
 
 
-module.exports = TouchNavItem;
+export default TouchNavItem;

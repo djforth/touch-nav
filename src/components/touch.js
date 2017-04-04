@@ -1,78 +1,83 @@
-//Libraries
-const React = require("react");
-const _     = require("lodash/core");
-_.mapValues = require("lodash/mapValues");
-_.get       = require("lodash/get");
-_.take      = require("lodash/take");
+// Libraries
+import React from 'react';
+import _ from 'lodash/core';
+import mapValues from 'lodash/mapValues';
+_.mapValues = mapValues;
+import get from 'lodash/get';
+_.get = get;
+import take from 'lodash/take';
+_.take = take;
 // Morse Libraies
-const ViewportDetect = require("viewport-detection-es6");
+import ViewportDetect from 'viewport-detection-es6';
 
-let mixins = require("morse-react-mixins");
-const [cssMixins, textMixins, widthsMixins]  = [mixins.css_mixins, mixins.text_mixins, mixins.widths_mixins];
+import {
+  css_mixins as cssMixins
+  , text_mixins as textMixins
+  , widths_mixins as widthsMixins
+} from 'morse-react-mixins';
 
-//Flux
-const NavActions = require("../actions/nav_actions")
-    , NavStore   = require("../stores/nav_store");
+// Flux
+import NavActions from '../actions/nav_actions';
+import NavStore from '../stores/nav_store';
 
-//Utils
-const touch = require("../utils/touch_processing")
+// Utils
+import touch from '../utils/touch_processing';
 
 // Components
-const NavItem = require("./touch-nav-item");
+import NavItem from './touch-nav-item';
 
-class Touch extends React.Component {
-  constructor(props) {
+class Touch extends React.Component{
+  constructor(props){
     super(props);
 
-    let id = _.uniqueId("nav");
+    let id = _.uniqueId('nav');
     this.directions;
     NavActions.addingItems(this.props.navitems, id);
-    this.left  = ["nav-mover", "move-left", {hidden:false}];
-    this.right = ["nav-mover", "move-right", {hidden:false}]
+    this.left  = ['nav-mover', 'move-left', {hidden: false}];
+    this.right = ['nav-mover', 'move-right', {hidden: false}];
     this.pos   = 0;
-    this.state = {listWidth:1000, listPos:0, id:id, navitems:NavStore.getNavItems(id), left:this.getClasses(this.left), right:this.getClasses(this.right), showBtn:true, holder_ref:`${id}holder`}
+    this.state = {listWidth: 1000, listPos: 0, id: id, navitems: NavStore.getNavItems(id), left: this.getClasses(this.left), right: this.getClasses(this.right), showBtn: true, holder_ref: `${id}holder`};
   }
 
-  componentDidMount() {
+  componentDidMount(){
     this.detect = new ViewportDetect();
     let device = this.detect.getDevice();
-
 
     this.vp_id = this.detect.trackSize(this._onViewChange.bind(this));
 
     let width = this._getWidths();
-    this.setState({listWidth:width});
+    this.setState({listWidth: width});
     // console.log(this.detect.removeCallback(this.vp_id));
-    NavStore.addChangeListener("change", this._onChange.bind(this));
+    NavStore.addChangeListener('change', this._onChange.bind(this));
     // NavStore.addChangeListener("adding", this._onAdd.bind(this));
   }
 
   componentDidUpdate(){
     let width = this._getWidths();
-    if(width !== this.state.listWidth){
-      this.setState({listWidth:width});
+    if (width !== this.state.listWidth){
+      this.setState({listWidth: width});
     }
   }
 
   componentWillReceiveProps(nextProps){
     // console.log("new props", nextProps.navitems)
     // console.log(this.props.navitems !== nextProps.navitems)
-    if(this.props.navitems !== nextProps.navitems){
+    if (this.props.navitems !== nextProps.navitems){
       NavActions.updateItems(nextProps.navitems, this.state.id);
       this.pos = 0;
-      this.setState({navitems:NavStore.getNavItems(this.state.id), listPos:0});
+      this.setState({navitems: NavStore.getNavItems(this.state.id), listPos: 0});
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(){
     this.detect.removeCallback(this.vp_id);
-    NavStore.removeChangeListener("change", this._onChange);
+    NavStore.removeChangeListener('change', this._onChange);
     // NavStore.removeChangeListener("add", this._onAdd);
   }
 
   _onViewChange(){
     this._showButtons(this.state.listWidth);
-    this.setState({listPos:0});
+    this.setState({listPos: 0});
   }
 
   // _onAdd(){
@@ -81,11 +86,11 @@ class Touch extends React.Component {
 
   _onChange(){
     let id = this.state.id;
-    this.setState({navitems:NavStore.getNavItems(id)});
+    this.setState({navitems: NavStore.getNavItems(id)});
   }
 
   _getDistance(move){
-    if(_.isEmpty(move)) return 0;
+    if (_.isEmpty(move)) return 0;
 
    return  _.reduce(move, (prev, cur)=>{
       return prev + cur;
@@ -96,11 +101,11 @@ class Touch extends React.Component {
     let holder = this._getHolderWidth();
     let show = (width > holder);
 
-    if(show !== this.state.showBtn){
-      this.left = this.setValue(this.left, "hidden", !show);
-      this.right = this.setValue(this.right, "hidden", !show);
+    if (show !== this.state.showBtn){
+      this.left = this.setValue(this.left, 'hidden', !show);
+      this.right = this.setValue(this.right, 'hidden', !show);
 
-      this.setState({left:this.getClasses(this.left), right:this.getClasses(this.right), showBtn:show})
+      this.setState({left: this.getClasses(this.left), right: this.getClasses(this.right), showBtn: show});
     }
   }
 
@@ -111,19 +116,19 @@ class Touch extends React.Component {
   _getWidths(){
     // return 0;
     // this.convertReactComps(_.omit(this.refs, this.state.holder_ref));
-    if(this.refs.navlist){
-      this.convertDomlist(this.refs.navlist.querySelectorAll("li"));
-      let width = Math.ceil(this.getWidths())
-      this._showButtons(width)
+    if (this.refs.navlist){
+      this.convertDomlist(this.refs.navlist.querySelectorAll('li'));
+      let width = Math.ceil(this.getWidths());
+      this._showButtons(width);
       return width;
     }
 
-    return this.state.listWidth
+    return this.state.listWidth;
   }
 
   _setStyle(){
-    let styles = {"width":this.state.listWidth, left:this.state.listPos}
-    return _.mapValues(styles, (v)=> {
+    let styles = {'width': this.state.listWidth, 'left': this.state.listPos};
+    return _.mapValues(styles, (v)=>{
       return `${v.toString()}px`;
     });
   }
@@ -134,29 +139,28 @@ class Touch extends React.Component {
   }
 
   _mover(dir){
-
     let elms = this.getAllWidths();
-    if(dir === "left" && this.pos > 0){
+    if (dir === 'left' && this.pos > 0){
       this.pos--;
-    } else if((dir === "right" && this.pos < elms.length)){
+    } else if ((dir === 'right' && this.pos < elms.length)){
       this.pos++;
     }
 
-    let move  = _.map(_.take(elms, this.pos), "width");
+    let move  = _.map(_.take(elms, this.pos), 'width');
     let mover = -this._getDistance(move);
     let holder = this._getHolderWidth();
-    if(this.state.listWidth+mover < holder){
+    if (this.state.listWidth+mover < holder){
       mover = -(this.state.listWidth - holder);
     }
 
-    this.setState({listPos:mover});
+    this.setState({listPos: mover});
   }
 
   _renderNav(){
-    let navitems
-    if(_.isArray(this.state.navitems)){
+    let navitems;
+    if (_.isArray(this.state.navitems)){
       navitems = _.map(this.state.navitems, (ni, i)=>{
-        let key = this.createId(ni.name, i, "touchnav");
+        let key = this.createId(ni.name, i, 'touchnav');
 
         return (
           <NavItem
@@ -164,13 +168,13 @@ class Touch extends React.Component {
             nav_id   = {this.state.id}
             callback = {this.props.callback}
             nav_item = {ni}
-         />)
-      })
+         />);
+      });
     } else {
-      navitems = "";
+      navitems = '';
     }
 
-    return (_.isEmpty(navitems)) ? "" : navitems
+    return (_.isEmpty(navitems)) ? '' : navitems;
   }
 
   _touchCancel(e){
@@ -178,15 +182,15 @@ class Touch extends React.Component {
   }
 
   _touchEnd(e){
-    let dir =  this.directions.getDirection()
+    let dir =  this.directions.getDirection();
     // console.log("end", dir)
-    if(dir.moveX !== ""){
+    if (dir.moveX !== ''){
       this._mover(dir.moveX);
     }
   }
 
   _touchMove(e){
-    this.directions.addMove(e.touches)
+    this.directions.addMove(e.touches);
     // console.log("move", _.first(e.touches))
   }
 
@@ -197,37 +201,35 @@ class Touch extends React.Component {
 
   _setCss(type){
     let t;
-    switch(type){
-      case "main":
-        t = (_.has(this.props, "main_css")) ? this.props.main_css : "touch-nav";
+    switch (type){
+      case 'main':
+        t = (_.has(this.props, 'main_css')) ? this.props.main_css : 'touch-nav';
       break;
-      case "ul":
-        t = (_.has(this.props, "ul_css")) ? this.props.ul_css : "nav-items";
+      case 'ul':
+        t = (_.has(this.props, 'ul_css')) ? this.props.ul_css : 'nav-items';
       break;
     }
 
-    return t
-
-
+    return t;
   }
 
   render(){
     return (
-      <nav className={this._setCss("main")}
+      <nav className={this._setCss('main')}
         onTouchCancel={this._touchCancel.bind(this)}
         onTouchEnd={this._touchEnd.bind(this)}
         onTouchMove={this._touchMove.bind(this)}
         onTouchStart={this._touchStart.bind(this)}
       >
-        <a href="#" className={this.state.left} onClick={this._buttonMove.bind(this, "left")}>
+        <a href="#" className={this.state.left} onClick={this._buttonMove.bind(this, 'left')}>
           <span className="hidden">left</span>
         </a>
         <div className="list-holder" ref={this.state.holder_ref}>
-          <ul className={this._setCss("ul")} style={this._setStyle()} onLoad={this._getWidths.bind(this)} ref="navlist">
+          <ul className={this._setCss('ul')} style={this._setStyle()} onLoad={this._getWidths.bind(this)} ref="navlist">
             {this._renderNav()}
           </ul>
         </div>
-        <a href="#" className={this.state.right}  onClick={this._buttonMove.bind(this, "right")}>
+        <a href="#" className={this.state.right}  onClick={this._buttonMove.bind(this, 'right')}>
           <span className="hidden">right</span>
         </a>
       </nav>
@@ -240,4 +242,4 @@ Object.assign(Touch.prototype, cssMixins);
 Object.assign(Touch.prototype, textMixins);
 Object.assign(Touch.prototype, widthsMixins);
 
-module.exports = Touch;
+export default Touch;
