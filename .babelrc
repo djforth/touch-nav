@@ -1,8 +1,66 @@
 {
   "presets": [
-    ["es2015", {"modules": false}],
-    "es2016",
-    "es2017",
     "react"
-  ]
+  ],
+  "env": {
+    "development": {
+      "presets": [
+        ["env", {
+          modules: false,
+          "targets": {
+              'node': 4,
+              "browsers": [
+                "last 2 versions",
+                "chrome >= 55",
+                "IE >= 11"
+              ]
+            }
+        }]
+      ]
+    },
+    "production": {
+      "plugins": [
+      ]
+      , "presets": [
+        ["env", {
+          modules: "umd",
+          "targets": {
+              'node': 4,
+              "browsers": [
+                "last 2 versions",
+                "chrome >= 55",
+                "IE >= 11"
+              ]
+            }
+        }]
+        , ["minify", {mangle:false}]
+      ]
+    },
+    "test": {
+      "plugins": [
+        [
+          "istanbul",
+          {
+            "exclude": [
+              "**/*_spec.js"
+            ]
+          }
+        ],
+        "rewire"
+      ],
+      "presets": [
+        ["env", {
+          modules: false,
+          "targets": {
+              'node': 4,
+              "browsers": [
+                "last 2 versions",
+                "chrome >= 55",
+                "IE >= 11"
+              ]
+            }
+        }]
+      ]
+    }
+  }
 }

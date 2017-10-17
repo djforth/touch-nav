@@ -1,0 +1,7 @@
+{
+  "extends": "morsedigital",
+  "rules": {
+    "react/jsx-uses-vars": 1,
+    "valid-jsdoc": 0
+  }
+}

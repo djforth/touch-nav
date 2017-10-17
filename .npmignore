@@ -1,8 +1,5 @@
 app/
-fe_build_scripts/
 spec/
-test_assets/
-public/
-npm-shrinkwrap.json
-modernizr-config.json
-karma.conf.js
+.apconfig
+.babelrc
+.eslintrc.js
