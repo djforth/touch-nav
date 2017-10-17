@@ -1,4 +1,4 @@
-import _ from 'lodash/core';
+import _ from 'lodash';
 
 
 function checkMove(st, end, sen){

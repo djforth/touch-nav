@@ -1,6 +1,6 @@
 // Libraries
 import React from 'react';
-import _ from 'lodash/core';
+import _ from 'lodash';
 import mapValues from 'lodash/mapValues';
 _.mapValues = mapValues;
 import get from 'lodash/get';
@@ -8,7 +8,7 @@ _.get = get;
 import take from 'lodash/take';
 _.take = take;
 // Morse Libraies
-import ViewportDetect from 'viewport-detection-es6';
+import ViewportDetect from '@djforth/viewport-detection-fp';
 
 import {
   css_mixins as cssMixins
@@ -40,10 +40,13 @@ class Touch extends React.Component{
   }
 
   componentDidMount(){
-    this.detect = new ViewportDetect();
-    let device = this.detect.getDevice();
-
-    this.vp_id = this.detect.trackSize(this._onViewChange.bind(this));
+    this.vpDetect = ViewportDetect();
+    this.vpDetect.addCallback((device)=>{
+      this.setState({device});
+    });
+    this.vpDetect.track();
+    // this.detect = new ViewportDetect();
+    this.device = this.vpDetect.getDevice();
 
     let width = this._getWidths();
     this.setState({listWidth: width});
@@ -60,8 +63,6 @@ class Touch extends React.Component{
   }
 
   componentWillReceiveProps(nextProps){
-    // console.log("new props", nextProps.navitems)
-    // console.log(this.props.navitems !== nextProps.navitems)
     if (this.props.navitems !== nextProps.navitems){
       NavActions.updateItems(nextProps.navitems, this.state.id);
       this.pos = 0;
@@ -70,19 +71,13 @@ class Touch extends React.Component{
   }
 
   componentWillUnmount(){
-    this.detect.removeCallback(this.vp_id);
     NavStore.removeChangeListener('change', this._onChange);
-    // NavStore.removeChangeListener("add", this._onAdd);
   }
 
   _onViewChange(){
     this._showButtons(this.state.listWidth);
     this.setState({listPos: 0});
   }
-
-  // _onAdd(){
-  //   this.setState({navitems:NavStore.getNavItems(this.state.id)});
-  // }
 
   _onChange(){
     let id = this.state.id;
@@ -114,8 +109,6 @@ class Touch extends React.Component{
   }
 
   _getWidths(){
-    // return 0;
-    // this.convertReactComps(_.omit(this.refs, this.state.holder_ref));
     if (this.refs.navlist){
       this.convertDomlist(this.refs.navlist.querySelectorAll('li'));
       let width = Math.ceil(this.getWidths());

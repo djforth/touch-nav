@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events';
-import _ from 'lodash/core';
+import _ from 'lodash';
 import NavDispatcher from '../dispatchers/nav_dispatcher';
 
 

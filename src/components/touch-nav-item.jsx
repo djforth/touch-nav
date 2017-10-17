@@ -1,5 +1,5 @@
  import React from 'react';
- import _ from 'lodash/core';
+ import _ from 'lodash';
 
  import omit from 'lodash/omit';
  _.omit = omit;
