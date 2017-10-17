@@ -2,10 +2,6 @@
 # yarn lockfile v1
 
 
-"@djforth/ajax-es6-fp@1.5.1", "@djforth/ajax-es6-fp@^1.4.3":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@djforth/ajax-es6-fp/-/ajax-es6-fp-1.5.1.tgz#3959c8ef9927c4891d1f96ee6b538f68b9147753"
-
 "@djforth/ap_karma_wp@^3.0.2":
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/@djforth/ap_karma_wp/-/ap_karma_wp-3.0.2.tgz#c763e320a3f354ca36a9ae842e69b3b8cb3e02c4"
@@ -126,12 +122,6 @@ after@0.8.1:
 after@0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/after/-/after-0.8.2.tgz#fedb394f9f0e02aa9768e702bda23b505fae7e1f"
-
-ajax-es6-module@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/ajax-es6-module/-/ajax-es6-module-1.2.0.tgz#ffc67ade3d03be22f79c4e5ec4a411865991966c"
-  dependencies:
-    lodash "^4.17.4"
 
 ajv-keywords@^2.0.0, ajv-keywords@^2.1.0:
   version "2.1.0"
@@ -1699,7 +1689,7 @@ circular-json@^0.3.0:
   version "0.3.1"
   resolved "https://registry.npmjs.org/circular-json/-/circular-json-0.3.1.tgz#be8b36aefccde8b3ca7aa2d6afc07a37242c0d2d"
 
-classnames@^2.2.1, classnames@^2.2.5:
+classnames@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -1974,16 +1964,6 @@ dashdash@^1.12.0:
   resolved "https://registry.npmjs.org/dashdash/-/dashdash-1.14.0.tgz#29e486c5418bf0f356034a993d51686a33e84141"
   dependencies:
     assert-plus "^1.0.0"
-
-datamanager@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/datamanager/-/datamanager-3.0.1.tgz#463f305aef81c34a1a79698cd0c726d775a76777"
-  dependencies:
-    "@djforth/ajax-es6-fp" "^1.4.3"
-    immutable "^3.8.2"
-    lodash "^4.17.4"
-    moment "^2.19.0"
-    moment-strftime "^0.2.3"
 
 date-now@^0.1.4:
   version "0.1.4"
@@ -4173,20 +4153,6 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
   dependencies:
     minimist "0.0.8"
 
-moment-strftime@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/moment-strftime/-/moment-strftime-0.2.3.tgz#830ed5336001e37a74bb5025030a839638357a75"
-  dependencies:
-    moment "^2.10"
-
-moment@^2.10, moment@^2.19.0, moment@^2.19.1:
-  version "2.19.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.1.tgz#56da1a2d1cbf01d38b7e1afc31c10bcfa1929167"
-
-moment@^2.10.6:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
-
 morse-react-mixins@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/morse-react-mixins/-/morse-react-mixins-2.1.4.tgz#934763e665b644f74e95f77d1f49511252ec0d46"
@@ -4850,14 +4816,6 @@ rc@~1.1.6:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
-
-react-date-range@^0.9.4:
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/react-date-range/-/react-date-range-0.9.4.tgz#d97515545a28edc717b674e169a50a215d69ec15"
-  dependencies:
-    classnames "^2.2.1"
-    moment "^2.10.6"
-    prop-types "^15.5.10"
 
 react-dom@^16.0.0:
   version "16.0.0"
@@ -5947,10 +5905,6 @@ verror@1.3.6:
   resolved "https://registry.npmjs.org/verror/-/verror-1.3.6.tgz#cff5df12946d297d2baaefaa2689e25be01c005c"
   dependencies:
     extsprintf "1.0.2"
-
-viewport-detection-es6@^2.1.6:
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/viewport-detection-es6/-/viewport-detection-es6-2.1.6.tgz#81dba46b4fe1be9ec53ba0e3f72cc275e3d27e06"
 
 vm-browserify@0.0.4:
   version "0.0.4"

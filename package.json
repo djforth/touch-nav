@@ -15,33 +15,23 @@
     "test:watch": "asset-pipeline-karma -w"
   },
   "dependencies": {
-    "@djforth/ajax-es6-fp": "1.5.1",
     "@djforth/viewport-detection-fp": "^2.0.1",
-    "ajax-es6-module": "^1.2.0",
     "babel-polyfill": "^6.26.0",
-    "classnames": "^2.2.5",
-    "datamanager": "^3.0.1",
     "flux": "^3.1.3",
     "immutable": "^3.8.2",
     "lodash": "^4.17.4",
-    "moment": "^2.19.1",
-    "moment-strftime": "^0.2.3",
     "morse-react-mixins": "^2.1.4",
     "react": "^16.0.0",
-    "react-date-range": "^0.9.4",
-    "react-dom": "^16.0.0",
-    "viewport-detection-es6": "^2.1.6"
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "@djforth/ap_karma_wp": "^3.0.2",
     "@djforth/ap_utils": "^3.1.2",
     "@djforth/morse-jasmine-wp": "^2.5.0",
     "@djforth/react-jasmine-wp": "^1.3.3",
-    "ajax-es6-module": "^1.2.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
-    "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-istanbul": "^4.1.5",
     "babel-plugin-rewire": "^1.1.0",
@@ -53,7 +43,6 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "jasmine-core": "^2.8.0",
-    "sinon": "^4.0.1",
-    "viewport-detection-es6": "^2.1.6"
+    "sinon": "^4.0.1"
   }
 }
