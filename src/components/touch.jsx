@@ -1,14 +1,11 @@
 // Libraries
 import React from 'react';
 import _ from 'lodash';
-import mapValues from 'lodash/mapValues';
-_.mapValues = mapValues;
-import get from 'lodash/get';
-_.get = get;
-import take from 'lodash/take';
-_.take = take;
-// Morse Libraies
+
 import ViewportDetect from '@djforth/viewport-detection-fp';
+
+// _.mapValues = mapValues;
+
 
 import {
   css_mixins as cssMixins
@@ -22,9 +19,9 @@ import NavStore from '../stores/nav_store';
 
 // Utils
 import touch from '../utils/touch_processing';
-
 // Components
 import NavItem from './touch-nav-item';
+import LeftArrow from './presentational/left_arrow';
 
 class Touch extends React.Component{
   constructor(props){
@@ -32,11 +29,15 @@ class Touch extends React.Component{
 
     let id = _.uniqueId('nav');
     this.directions;
+    this.holder_ref;
+    this.navlist;
     NavActions.addingItems(this.props.navitems, id);
     this.left  = ['nav-mover', 'move-left', {hidden: false}];
     this.right = ['nav-mover', 'move-right', {hidden: false}];
+    this.buttonMoveLeft = this._buttonMove.bind(this, 'left');
+    this.buttonMoveRight = this._buttonMove.bind(this, 'right');
     this.pos   = 0;
-    this.state = {listWidth: 1000, listPos: 0, id: id, navitems: NavStore.getNavItems(id), left: this.getClasses(this.left), right: this.getClasses(this.right), showBtn: true, holder_ref: `${id}holder`};
+    this.state = {listWidth: 1000, listPos: 0, id: id, navitems: NavStore.getNavItems(id), left: this.getClasses(this.left), right: this.getClasses(this.right), showBtn: true};
   }
 
   componentDidMount(){
@@ -53,6 +54,12 @@ class Touch extends React.Component{
     // console.log(this.detect.removeCallback(this.vp_id));
     NavStore.addChangeListener('change', this._onChange.bind(this));
     // NavStore.addChangeListener("adding", this._onAdd.bind(this));
+  }
+
+  componentDidCatch(error, info){
+    // Display fallback UI
+    // You can also log the error to an error reporting service
+    logErrorToMyService(error, info);
   }
 
   componentDidUpdate(){
@@ -105,12 +112,12 @@ class Touch extends React.Component{
   }
 
   _getHolderWidth(){
-    return _.get(this.refs, this.state.holder_ref).offsetWidth;
+    return this.holder_ref.offsetWidth;
   }
 
   _getWidths(){
-    if (this.refs.navlist){
-      this.convertDomlist(this.refs.navlist.querySelectorAll('li'));
+    if (this.navlist){
+      this.convertDomlist(this.navlist.querySelectorAll('li'));
       let width = Math.ceil(this.getWidths());
       this._showButtons(width);
       return width;
@@ -121,7 +128,7 @@ class Touch extends React.Component{
 
   _setStyle(){
     let styles = {'width': this.state.listWidth, 'left': this.state.listPos};
-    return _.mapValues(styles, (v)=>{
+    return Object.values(styles).map((v)=>{
       return `${v.toString()}px`;
     });
   }
@@ -139,7 +146,7 @@ class Touch extends React.Component{
       this.pos++;
     }
 
-    let move  = _.map(_.take(elms, this.pos), 'width');
+    let move  = _.map(elms.slice(0, this.pos), 'width');
     let mover = -this._getDistance(move);
     let holder = this._getHolderWidth();
     if (this.state.listWidth+mover < holder){
@@ -192,37 +199,23 @@ class Touch extends React.Component{
     // console.log("start", _.first(e.touches))
   }
 
-  _setCss(type){
-    let t;
-    switch (type){
-      case 'main':
-        t = (_.has(this.props, 'main_css')) ? this.props.main_css : 'touch-nav';
-      break;
-      case 'ul':
-        t = (_.has(this.props, 'ul_css')) ? this.props.ul_css : 'nav-items';
-      break;
-    }
-
-    return t;
-  }
-
   render(){
     return (
-      <nav className={this._setCss('main')}
+      <nav className="touch-nav"
         onTouchCancel={this._touchCancel.bind(this)}
         onTouchEnd={this._touchEnd.bind(this)}
         onTouchMove={this._touchMove.bind(this)}
         onTouchStart={this._touchStart.bind(this)}
       >
-        <a href="#" className={this.state.left} onClick={this._buttonMove.bind(this, 'left')}>
-          <span className="hidden">left</span>
+        <a href="#" className={this.state.left} onClick={this.buttonMoveLeft}>
+        <span className="hidden">right</span>
         </a>
-        <div className="list-holder" ref={this.state.holder_ref}>
-          <ul className={this._setCss('ul')} style={this._setStyle()} onLoad={this._getWidths.bind(this)} ref="navlist">
+        <div className="list-holder" ref={(e)=>{this.holder_ref = e;}}>
+          <ul className="nav-items" style={this._setStyle()} onLoad={this._getWidths.bind(this)} ref={(e)=>{this.navlist = e;}}>
             {this._renderNav()}
           </ul>
         </div>
-        <a href="#" className={this.state.right}  onClick={this._buttonMove.bind(this, 'right')}>
+        <a href="#" className={this.state.right}  onClick={this.buttonMoveRight}>
           <span className="hidden">right</span>
         </a>
       </nav>

@@ -20,8 +20,10 @@
     },
     "production": {
       "plugins": [
+        "lodash",
+        "add-module-exports"
       ]
-      , "presets": [
+      , "presets": [  
         ["env", {
           modules: "umd",
           "targets": {
@@ -33,7 +35,7 @@
               ]
             }
         }]
-        , ["minify", {mangle:false}]
+        // , ["minify", {mangle:false}]
       ]
     },
     "test": {

@@ -1,8 +1,6 @@
  import React from 'react';
- import _ from 'lodash';
+ import _, {omit} from 'lodash';
 
- import omit from 'lodash/omit';
- _.omit = omit;
 // Mixins
 import {
   checker
