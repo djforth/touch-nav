@@ -1,6 +1,6 @@
 {
   "name": "@morsedigital/touch-nav",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "lib/components/touch.js",
   "repository": "git@github.com:morsedigital/touch-nav.git",
   "author": "Adrian Stainforth <adrian.stainforth@gmail.com>",
